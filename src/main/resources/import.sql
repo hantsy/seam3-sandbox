@@ -1,0 +1,1 @@
+insert into tag(id, name) values(1, 'JEE6'), (2,  'JBoss') ,(3 ,'Seam 3')

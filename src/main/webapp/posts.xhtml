@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.org/seam/faces"
+	template="/resources/forge-template.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<s:viewAction action="#{conversation.end}"
+				if="#{not conversation.transient}" immediate="true" />
+		</f:metadata>
+	</ui:define>
+	
+	<ui:param name="pageTitle" value="List Tag" />
+
+	<ui:define name="header">
+		Post
+	</ui:define>
+
+	<ui:define name="subheader">
+		Listing all posts.
+	</ui:define>
+
+	<ui:define name="footer">
+	</ui:define>
+
+	<ui:define name="main">
+		<h:form id="form">
+
+			<h:messages />
+
+			<h:button value="Create new" outcome="post-form" />
+			<br />
+
+			<ul>
+				<ui:repeat var="entity" value="#{postHome.dataModel}">
+					<li>#{entity.id} <h:link outcome="/post-form.xhtml" value="[edit]">
+							<f:param name="id" value="#{entity.id}" />
+						</h:link> #{entity.title}
+					</li>
+				</ui:repeat>
+			</ul>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="left">
+		<h3>Get involved</h3>
+		<p>
+			If you would like to get involved in this project, please visit the <a
+				href="http://bit.ly/seamforge">Forge homepage</a> or visit the
+			#seam-dev IRC channel: <a href="irc://chat.freenode.net/#seam-dev">freenode.net#seam-dev</a>
+			and ask about "Forge"
+		</p>
+		<p>
+			If you have an idea for a plugin or improvement, and would like to do
+			some "forgestorming", submit it <a href="http://bit.ly/forgestorm">here</a>.
+		</p>
+
+		<h3>Useful links</h3>
+		<ul>
+			<li>Seam 3: <a href="http://seamframework.org/Seam3">Home</a></li>
+			<li>JBoss.org: <a href="http://jboss.org">Home</a></li>
+		</ul>
+	</ui:define>
+
+</ui:composition>
+
+

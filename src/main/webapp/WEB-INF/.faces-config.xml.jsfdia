@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#post-form.xhtml" PATH="/post-form.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#post-form.xhtml:0" NAME="item"
+   PATH="/post-form.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.save()}:#posts.xhtml"
+    NAME="output" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
+    TITLE="#{postEditAction.save()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.save2()}:#posts.xhtml"
+    NAME="output1" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
+    TITLE="#{postEditAction.save2()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.save3()}:#posts.xhtml"
+    NAME="output2" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
+    TITLE="#{postEditAction.save3()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.save4()}:#posts.xhtml"
+    NAME="output3" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
+    TITLE="#{postEditAction.save4()}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#posts.xhtml" PATH="/posts.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
