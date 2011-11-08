@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 public class Tag extends BaseEntity implements java.io.Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2084952453451946917L;
 
@@ -19,7 +19,7 @@ public class Tag extends BaseEntity implements java.io.Serializable {
 	private String name;
 
 	@ManyToMany
-	Set<Post> posts = new HashSet<Post>();
+	Set<Post> posts;
 
 	public String getName() {
 		return this.name;

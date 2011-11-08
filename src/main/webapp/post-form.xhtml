@@ -41,16 +41,16 @@
 				<h:inputTextarea id="input" style="width: 350px" rows="10"
 					value="#{postEditAction.currentPost.content}" required="true" />
 			</p:input>
-			
+
 			<p:input id="tags" label="Tags" required="true">
-				<h:selectManyCheckbox id="input" value="#{postEditAction.currentPost.tags}">
+				<h:selectManyCheckbox id="input" value="#{postEditAction.tags}" valueChangeListener="#{postEditAction.changeTags}">
 					<f:selectItems value="#{tags}" var="t" itemLabel="#{t.name}">
 					</f:selectItems>
 					<f:converter converterId="tagConverter"/>
 				</h:selectManyCheckbox>
 			</p:input>
 			<br />
-			
+
 			<h:commandButton value="Create" action="#{postEditAction.save()}" />
 			<h:commandButton value="Create 2" action="#{postEditAction.save2()}" />
 			<h:commandButton value="Create 3" action="#{postEditAction.save3()}" />
