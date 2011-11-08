@@ -1,8 +1,7 @@
 package com.hantsylabs.seam3sandbox.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Post extends BaseEntity implements java.io.Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +30,7 @@ public class Post extends BaseEntity implements java.io.Serializable {
 	private Date createdOn;
 
 	@ManyToMany(cascade = { CascadeType.REFRESH }, mappedBy = "posts")
-	List<Tag> tags = new ArrayList<Tag>();
+    Set<Tag> tags;
 
 
 	public String getTitle() {
@@ -57,12 +56,12 @@ public class Post extends BaseEntity implements java.io.Serializable {
 	public void setCreatedOn(final Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	
-	public List<Tag> getTags() {
+
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 
@@ -71,4 +70,9 @@ public class Post extends BaseEntity implements java.io.Serializable {
 		return "Post [title=" + title + ", content=" + content + ", createdOn="
 				+ createdOn + "]";
 	}
+
+    public void addTag(final Tag t) {
+        this.tags.add(t);
+        t.getPosts().add(this);
+    }
 }
