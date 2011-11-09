@@ -40,6 +40,40 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/tag-form.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{tagEditAction.save()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{tagEditAction.save2()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{tagEditAction.save3()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{tagEditAction.save4()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{tagEditAction.cancel()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<application>
 		<resource-bundle>
 			<base-name>messages</base-name>

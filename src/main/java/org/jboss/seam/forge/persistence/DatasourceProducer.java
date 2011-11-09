@@ -17,7 +17,7 @@ public class DatasourceProducer implements Serializable {
 	@PersistenceUnit
 	@Produces
 	@ConversationScoped
-	@ExtensionManaged
+	@ExtensionManaged()
 	private EntityManagerFactory emf;
 
 

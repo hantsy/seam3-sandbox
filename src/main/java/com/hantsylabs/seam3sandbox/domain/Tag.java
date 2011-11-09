@@ -1,6 +1,7 @@
 package com.hantsylabs.seam3sandbox.domain;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ public class Tag extends BaseEntity implements java.io.Serializable {
 	private String name;
 
 	@ManyToMany
-	Set<Post> posts = new HashSet<Post>();
+	List<Post> posts = new ArrayList<Post>();
 
 	public String getName() {
 		return this.name;
@@ -29,11 +30,11 @@ public class Tag extends BaseEntity implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Set<Post> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 
-	public void setPosts(Set<Post> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
