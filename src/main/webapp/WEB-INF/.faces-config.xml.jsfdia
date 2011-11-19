@@ -16,8 +16,34 @@
    <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.save4()}:#posts.xhtml"
     NAME="output3" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
     TITLE="#{postEditAction.save4()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{postEditAction.cancel()}:#posts.xhtml"
+    NAME="output4" PATH="/posts.xhtml" TARGET="rules:#posts.xhtml"
+    TITLE="#{postEditAction.cancel()}:[any]" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#posts.xhtml" PATH="/posts.xhtml"
   SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tag-form.xhtml" PATH="/tag-form.xhtml"
+  SHAPE="32,257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#tag-form.xhtml:0" NAME="item"
+   PATH="/tag-form.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save()}:#tags.xhtml"
+    NAME="output" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save2()}:#tags.xhtml"
+    NAME="output1" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save2()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save3()}:#tags.xhtml"
+    NAME="output2" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save3()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save4()}:#tags.xhtml"
+    NAME="output3" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save4()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.cancel()}:#tags.xhtml"
+    NAME="output4" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.cancel()}:[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#tags.xhtml" PATH="/tags.xhtml"
+  SHAPE="304,385,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

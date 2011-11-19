@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,15 +25,15 @@ public class Post extends BaseEntity implements java.io.Serializable {
 	@Column
 	private String content;
 
-
-
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date createdOn;
+	private Date createdOn=new Date();
 
 	@ManyToMany(cascade = { CascadeType.REFRESH }, mappedBy = "posts")
 	List<Tag> tags = new ArrayList<Tag>();
 
+	@OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true, mappedBy="post")
+	private List<Comment> comments = new ArrayList<Comment>();
 
 	public String getTitle() {
 		return this.title;
@@ -57,13 +58,22 @@ public class Post extends BaseEntity implements java.io.Serializable {
 	public void setCreatedOn(final Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	
+
 	public List<Tag> getTags() {
 		return tags;
 	}
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override
