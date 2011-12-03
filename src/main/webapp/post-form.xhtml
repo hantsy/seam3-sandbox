@@ -43,10 +43,10 @@
 			</p:input>
 			
 			<p:input id="tags" label="Tags" required="true">
-				<h:selectManyCheckbox id="input" value="#{postEditAction.currentPost.tags}">
+				<h:selectManyCheckbox id="input" value="#{postEditAction.currentPost.tags}" collectionType="java.util.ArrayList">
 					<f:selectItems value="#{tags}" var="t" itemLabel="#{t.name}">
 					</f:selectItems>
-					<f:converter converterId="tagConverter"/>
+					<s:objectConverter/>
 				</h:selectManyCheckbox>
 			</p:input>
 			<br />
