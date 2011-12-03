@@ -8,9 +8,30 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<seam.version>3.1.0.Beta5</seam.version>
+		<!-- <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir> -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+		<webapp.directory>src/main/webapp</webapp.directory>
+		<jboss.home>${env.JBOSS_HOME}</jboss.home>
+		<jboss.domain>default</jboss.domain>
+		<seam.version>3.1.0.CR1</seam.version>
+		<richfaces.version>4.1.0.20111111-CR1</richfaces.version>
+		<jpamodelgen.version>1.1.1.Final</jpamodelgen.version>
+		<jboss-as-client.version>6.0.0.Final</jboss-as-client.version>
 		<jboss-javaee6-spec.version>2.0.0.Final</jboss-javaee6-spec.version>
+		<jboss-server-manager.version>1.0.3.GA</jboss-server-manager.version>
+		<jersey.version>1.5</jersey.version>
+		<version.fest.assert>1.4</version.fest.assert>
+		<version.arquillian_core>1.0.0.CR6</version.arquillian_core>
 	</properties>
+
+
+	<scm>
+		<connection>scm:svn:http://webapps.telopsys.co.uk:8050/svn/siorc/trunk/</connection>
+		<developerConnection>scm:svn:http://webapps.telopsys.co.uk:8050/svn/siorc/trunk/</developerConnection>
+		<url>http://webapps.telopsys.co.uk:8050/viewvc/siorc/trunk/</url>
+	</scm>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -20,53 +41,30 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- <dependency> <groupId>org.richfaces</groupId> <artifactId>richfaces-bom</artifactId> 
-				<version>${richfaces.version}</version> <scope>import</scope> <type>pom</type> 
-				</dependency> -->
+			<dependency>
+				<groupId>org.richfaces</groupId>
+				<artifactId>richfaces-bom</artifactId>
+				<version>${richfaces.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian_core}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${jboss-javaee6-spec.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>${jboss-javaee6-spec.version}</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.seam.international</groupId>
-			<artifactId>seam-international</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.seam.faces</groupId>
-			<artifactId>seam-faces</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ocpsoft</groupId>
-			<artifactId>ocpsoft-pretty-time</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ocpsoft</groupId>
-			<artifactId>prettyfaces-jsf2</artifactId>
-			<version>3.3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.seam.persistence</groupId>
-			<artifactId>seam-persistence</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.seam.transaction</groupId>
-			<artifactId>seam-transaction</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.solder</groupId>
 			<artifactId>solder-api</artifactId>
@@ -87,6 +85,169 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jboss.seam.faces</groupId>
+			<artifactId>seam-faces</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.conversation</groupId>
+			<artifactId>seam-conversation-spi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.conversation</groupId>
+			<artifactId>seam-conversation-weld</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.mail</groupId>
+			<artifactId>seam-mail-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.mail</groupId>
+			<artifactId>seam-mail</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.transaction</groupId>
+			<artifactId>seam-transaction</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.persistence</groupId>
+			<artifactId>seam-persistence</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.seam.security</groupId>
+			<artifactId>seam-security-api</artifactId>
+			<scope>compile</scope>
+
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.security</groupId>
+			<artifactId>seam-security</artifactId>
+			<scope>compile</scope>
+
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.seam.reports</groupId>
+			<artifactId>seam-reports-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam.reports</groupId>
+			<artifactId>seam-reports-jasper</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>4.1.2</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>dom4j</artifactId>
+					<groupId>dom4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bcmail-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bcprov-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>ocpsoft-pretty-time</artifactId>
+			<!-- <version>1.0.7</version> -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>prettyfaces-jsf2</artifactId>
+			<!-- <version>3.3.0</version> -->
+		</dependency>
+
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<!-- Bean Validation Implementation; provides portable constraints @NotEmpty, 
+			@Email and @Url -->
+		<!-- Hibernate Validator is the only JSR-303 implementation at the moment, 
+			so we can assume it's provided -->
+		<!-- TODO Move Hibernate Validator to app server specific sections -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.0.0.CR4</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>dom4j</artifactId>
+					<groupId>dom4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>${jpamodelgen.version}</version>
+			<scope>provided</scope>
+			<!-- Excluded Hibernate-provided JPA API because it's provided by the 
+				Java EE 6 dependencies -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.0-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search</artifactId> 
+			<version>3.4.0.Final</version> <exclusions> <exclusion> <artifactId> hibernate-commons-annotations 
+			</artifactId> <groupId>org.hibernate</groupId> </exclusion> <exclusion> <artifactId>hibernate-core</artifactId> 
+			<groupId>org.hibernate</groupId> </exclusion> <exclusion> <artifactId>slf4j-api</artifactId> 
+			<groupId>org.slf4j</groupId> </exclusion> </exclusions> </dependency> -->
+
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 		</dependency>
@@ -97,25 +258,49 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- Rich faces -->
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-components-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.core</groupId>
+			<artifactId>richfaces-core-impl</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>${jboss-javaee6-spec.version}</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.2</version>
 			<scope>runtime</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-			<scope>runtime</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.2</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>

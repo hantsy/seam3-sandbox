@@ -32,15 +32,15 @@ public interface PagesConfig {
 //		@ViewPattern("/post-form.xhtml")
 //		POST_NEW,
 		
-		@FacesRedirect
-		@UrlMapping(pattern = "/tags")
-		@ViewPattern("/tags.xhtml")
-		TAGS,
-
-		@FacesRedirect
-		@UrlMapping(pattern = "/tag/edit/#{id}")
-		@ViewPattern("/tag-form.xhtml")
-		TAG_EDIT,
+//		@FacesRedirect
+//		@UrlMapping(pattern = "/tags")
+//		@ViewPattern("/tags.xhtml")
+//		TAGS,
+//
+//		@FacesRedirect
+//		@UrlMapping(pattern = "/tag/edit/#{id}")
+//		@ViewPattern("/tag-form.xhtml")
+//		TAG_EDIT,
 //		
 //		@FacesRedirect
 //		@UrlMapping(pattern = "/tag/new")

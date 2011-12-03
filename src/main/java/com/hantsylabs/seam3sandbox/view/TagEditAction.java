@@ -6,6 +6,8 @@ import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.TransactionPhase;
+import javax.faces.application.FacesMessage;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -105,8 +107,6 @@ public class TagEditAction {
 			conversation.end();
 		}
 	}
-	
-
 
 	public void save3() {
 		if (log.isDebugEnabled()) {
@@ -117,7 +117,7 @@ public class TagEditAction {
 		} else {
 			this.currentTag = em.merge(this.currentTag);
 		}
-		
+
 		em.flush();
 
 		tagSavedEvent.fire(this.currentTag);
@@ -136,7 +136,30 @@ public class TagEditAction {
 		} else {
 			this.currentTag = em.merge(this.currentTag);
 		}
-		
+
+		em.flush();
+
+		tagSavedEvent.fire(this.currentTag);
+		if (!conversation.isTransient()) {
+			conversation.end();
+		}
+	}
+
+	public void save5() {
+		if (log.isDebugEnabled()) {
+			log.debug("call save ");
+		}
+
+		if ("error".equals("error")) {
+			messages.error("Show error message should prevent navigation.");
+			return;
+		}
+		if (this.currentTag.getId() == null) {
+			em.persist(this.currentTag);
+		} else {
+			this.currentTag = em.merge(this.currentTag);
+		}
+
 		em.flush();
 
 		tagSavedEvent.fire(this.currentTag);
@@ -145,6 +168,30 @@ public class TagEditAction {
 		}
 	}
 	
+	public void save6() {
+		if (log.isDebugEnabled()) {
+			log.debug("call save ");
+		}
+
+		if ("error".equals("error")) {
+			throw new ValidatorException(new FacesMessage("Exception threw in page directly"));
+		}
+		
+		if (this.currentTag.getId() == null) {
+			em.persist(this.currentTag);
+		} else {
+			this.currentTag = em.merge(this.currentTag);
+		}
+
+		em.flush();
+
+		tagSavedEvent.fire(this.currentTag);
+		if (!conversation.isTransient()) {
+			conversation.end();
+		}
+	}
+
+
 	public void cancel() {
 		if (log.isDebugEnabled()) {
 			log.debug("call cancel ");

@@ -67,6 +67,19 @@
 			<to-view-id>/tags.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{tagEditAction.save5()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{tagEditAction.save6()}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/tags.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 		<navigation-case>
 			<from-action>#{tagEditAction.cancel()}</from-action>
 			<if>#{true}</if>

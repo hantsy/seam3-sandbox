@@ -39,9 +39,12 @@
    <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save4()}:#tags.xhtml"
     NAME="output3" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
     TITLE="#{tagEditAction.save4()}:[any]" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.cancel()}:#tags.xhtml"
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save5()}:#tags.xhtml"
     NAME="output4" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
-    TITLE="#{tagEditAction.cancel()}:[any]" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{tagEditAction.save5()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save6()}:#tags.xhtml"
+    NAME="output5" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save6()}:[any]" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#tags.xhtml" PATH="/tags.xhtml"
