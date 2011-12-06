@@ -14,7 +14,7 @@
 		<webapp.directory>src/main/webapp</webapp.directory>
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
 		<jboss.domain>default</jboss.domain>
-		<seam.version>3.1.0.CR1</seam.version>
+		<seam.version>3.1.0-SNAPSHOT</seam.version>
 		<richfaces.version>4.1.0.20111111-CR1</richfaces.version>
 		<jpamodelgen.version>1.1.1.Final</jpamodelgen.version>
 		<jboss-as-client.version>6.0.0.Final</jboss-as-client.version>
@@ -150,11 +150,13 @@
 			<groupId>org.jboss.seam.reports</groupId>
 			<artifactId>seam-reports-api</artifactId>
 			<scope>compile</scope>
+			<version>3.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.seam.reports</groupId>
 			<artifactId>seam-reports-jasper</artifactId>
+			<version>3.1.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 
