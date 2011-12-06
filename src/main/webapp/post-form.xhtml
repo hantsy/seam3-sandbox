@@ -33,24 +33,24 @@
 
 			<h:messages globalOnly="true" showSummary="true"/>
 
-			<p:input id="title" label="Title" required="true">
-				<h:inputText id="input" value="#{postEditAction.currentPost.title}"
+			<p:input id="title" label="Title">
+				<h:inputText id="input" value="#{currentPost.title}"
 					required="true" />
 			</p:input>
 			<p:input id="content" label="Content" required="true">
 				<h:inputTextarea id="input" style="width: 350px" rows="10"
-					value="#{postEditAction.currentPost.content}" required="true" />
+					value="#{currentPost.content}" required="true" />
 			</p:input>
-			
-			<p:input id="tags" label="Tags" required="true">
-				<h:selectManyCheckbox id="input" value="#{postEditAction.currentPost.tags}">
-					<f:selectItems value="#{tags}" var="t" itemLabel="#{t.name}">
-					</f:selectItems>
+
+      <!-- added the collectionType to avoid the Mojarra bug -->
+			<p:input id="content" label="Tags" required="true">
+				<h:selectManyCheckbox id="input" value="#{currentPost.tags}" collectionType="java.util.ArrayList">
+					<f:selectItems value="#{tags}" var="t" itemLabel="#{t.name}" />
 					<f:converter converterId="tagConverter"/>
 				</h:selectManyCheckbox>
 			</p:input>
 			<br />
-			
+
 			<h:commandButton value="Create" action="#{postEditAction.save()}" />
 			<h:commandButton value="Create 2" action="#{postEditAction.save2()}" />
 			<h:commandButton value="Create 3" action="#{postEditAction.save3()}" />
