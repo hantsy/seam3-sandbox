@@ -45,6 +45,9 @@
    <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save6()}:#tags.xhtml"
     NAME="output5" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
     TITLE="#{tagEditAction.save6()}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID=":#{tagEditAction.save7()}:#tags.xhtml"
+    NAME="output6" PATH="/tags.xhtml" TARGET="rules:#tags.xhtml"
+    TITLE="#{tagEditAction.save7()}:[any]" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#tags.xhtml" PATH="/tags.xhtml"

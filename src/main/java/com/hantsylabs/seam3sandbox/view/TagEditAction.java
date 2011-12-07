@@ -7,6 +7,7 @@ import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.TransactionPhase;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -35,6 +36,9 @@ public class TagEditAction {
 
 	@Inject
 	Messages messages;
+
+	@Inject
+	FacesContext facesContext;
 
 	@Inject
 	Event<Tag> tagSavedEvent;
@@ -167,16 +171,17 @@ public class TagEditAction {
 			conversation.end();
 		}
 	}
-	
+
 	public void save6() {
 		if (log.isDebugEnabled()) {
 			log.debug("call save ");
 		}
 
 		if ("error".equals("error")) {
-			throw new ValidatorException(new FacesMessage("Exception threw in page directly"));
+			throw new ValidatorException(new FacesMessage(
+					"Exception threw in page directly"));
 		}
-		
+
 		if (this.currentTag.getId() == null) {
 			em.persist(this.currentTag);
 		} else {
@@ -191,6 +196,31 @@ public class TagEditAction {
 		}
 	}
 
+	public void save7() {
+		if (log.isDebugEnabled()) {
+			log.debug("call save ");
+		}
+
+		if ("error".equals("error")) {
+			facesContext.addMessage(null, new FacesMessage(
+					FacesMessage.SEVERITY_ERROR,
+					"addMessages  to faces contex", ""));
+			return;
+		}
+
+		if (this.currentTag.getId() == null) {
+			em.persist(this.currentTag);
+		} else {
+			this.currentTag = em.merge(this.currentTag);
+		}
+
+		em.flush();
+
+		tagSavedEvent.fire(this.currentTag);
+		if (!conversation.isTransient()) {
+			conversation.end();
+		}
+	}
 
 	public void cancel() {
 		if (log.isDebugEnabled()) {
