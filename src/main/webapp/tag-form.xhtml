@@ -10,8 +10,8 @@
 	template="/resources/forge-template.xhtml">
 	<ui:define name="metadata">
 		<f:metadata>
-			<f:viewParam name="id" value="#{tagEditAction.tagId}"/>
-			<s:viewAction action="#{tagEditAction.init()}"/>
+			<f:viewParam name="id" value="#{tagEditAction.tagId}" />
+			<s:viewAction action="#{tagEditAction.init()}" />
 		</f:metadata>
 	</ui:define>/>
 
@@ -31,24 +31,33 @@
 	<ui:define name="main">
 		<h:form id="form">
 
-			<h:messages globalOnly="true" showSummary="true"/>
+			<h:messages globalOnly="true" showSummary="true" />
 
 			<p:input id="title" label="Title" required="true">
 				<h:inputText id="input" value="#{tagEditAction.currentTag.name}"
 					required="true" />
 			</p:input>
 			<br />
-			
+
 			<h:commandButton value="Create" action="#{tagEditAction.save()}" />
 			<h:commandButton value="Create 2" action="#{tagEditAction.save2()}" />
 			<h:commandButton value="Create 3" action="#{tagEditAction.save3()}" />
 			<h:commandButton value="Create 4" action="#{tagEditAction.save4()}" />
-			
-			<h:commandButton value="Create 5" action="#{tagEditAction.save5()}" />		
+
+			<h:commandButton value="Create 5" action="#{tagEditAction.save5()}" />
 			<h:commandButton value="Create 6" action="#{tagEditAction.save6()}" />
-			
+
 			<h:commandButton value="Create 7" action="#{tagEditAction.save7()}" />
-			<h:commandButton value="Cancel" immediate="true" action="#{tagEditAction.cancel()}" />
+
+
+
+			<h:commandButton value="Cancel" immediate="true"
+				action="#{tagEditAction.cancel()}" />
+		</h:form>
+
+
+		<h:form>
+			<h:commandButton value="Save 8" action="#{tagEditAction.save8()}" />
 		</h:form>
 	</ui:define>
 

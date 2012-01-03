@@ -2,11 +2,11 @@ package com.hantsylabs.seam3sandbox.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Tag extends BaseEntity implements java.io.Serializable {
@@ -16,7 +16,8 @@ public class Tag extends BaseEntity implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -2084952453451946917L;
 
-	@Column
+	@Column(nullable = false)
+	@NotNull
 	private String name;
 
 	@ManyToMany

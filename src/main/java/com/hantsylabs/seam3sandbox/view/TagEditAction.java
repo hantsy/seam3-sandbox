@@ -222,6 +222,23 @@ public class TagEditAction {
 		}
 	}
 
+	public void save8() {
+		if (log.isDebugEnabled()) {
+			log.debug("call save ");
+		}
+
+		this.currentTag = new Tag();
+		em.persist(this.currentTag);
+		
+		this.currentTag.setName("save 8");
+		em.flush();
+
+		tagSavedEvent.fire(this.currentTag);
+		if (!conversation.isTransient()) {
+			conversation.end();
+		}
+	}
+
 	public void cancel() {
 		if (log.isDebugEnabled()) {
 			log.debug("call cancel ");
