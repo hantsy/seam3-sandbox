@@ -14,15 +14,21 @@
 		<webapp.directory>src/main/webapp</webapp.directory>
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
 		<jboss.domain>default</jboss.domain>
-		<seam.version>3.1.0-SNAPSHOT</seam.version>
-		<richfaces.version>4.1.0.20111111-CR1</richfaces.version>
+		<seam.version>3.1.0.Final</seam.version>
+		<richfaces.version>4.2.2.Final</richfaces.version>
 		<jpamodelgen.version>1.1.1.Final</jpamodelgen.version>
-		<jboss-as-client.version>6.0.0.Final</jboss-as-client.version>
-		<jboss-javaee6-spec.version>2.0.0.Final</jboss-javaee6-spec.version>
-		<jboss-server-manager.version>1.0.3.GA</jboss-server-manager.version>
-		<jersey.version>1.5</jersey.version>
 		<version.fest.assert>1.4</version.fest.assert>
-		<version.arquillian_core>1.0.0.CR6</version.arquillian_core>
+		<version.arquillian_core>1.0.0.Final</version.arquillian_core>
+		<version.arquillian_drone>1.0.0.CR4</version.arquillian_drone>
+		<version.arquillian_ajocado>1.0.0.CR3</version.arquillian_ajocado>
+		<version.jsfunit>2.0.0.Beta2</version.jsfunit>
+		<version.hamcrest>1.2</version.hamcrest>
+		<version.jboss_javaee6_spec>2.0.0.Final</version.jboss_javaee6_spec>
+		<version.jbossas_7>7.1.1.Final</version.jbossas_7>
+		<version.resteasy>2.0.1.GA</version.resteasy>
+		<version.log4j>1.2.14</version.log4j>
+		<version.slf4j>1.5.10</version.slf4j>
+		<version.jboss_solder>3.1.0.Final</version.jboss_solder>
 	</properties>
 
 
@@ -48,6 +54,15 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${version.jboss_javaee6_spec}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Test dependencies -->
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -56,12 +71,39 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-6.0</artifactId>
-				<version>${jboss-javaee6-spec.version}</version>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-drone-bom</artifactId>
+				<version>${version.arquillian_drone}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.jsfunit</groupId>
+				<artifactId>jsfunit-arquillian</artifactId>
+				<version>${version.jsfunit}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.as</groupId>
+				<artifactId>jboss-as-arquillian-container-remote</artifactId>
+				<version>${version.jbossas_7}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.as</groupId>
+				<artifactId>jboss-as-controller-client</artifactId>
+				<version>${version.jbossas_7}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${version.slf4j}</version>
+				<scope>test</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -150,13 +192,11 @@
 			<groupId>org.jboss.seam.reports</groupId>
 			<artifactId>seam-reports-api</artifactId>
 			<scope>compile</scope>
-			<version>3.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.seam.reports</groupId>
 			<artifactId>seam-reports-jasper</artifactId>
-			<version>3.1.0-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -219,7 +259,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.0.0.CR4</version>
+			<version>4.0.1.Final</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -243,11 +283,12 @@
 			</exclusions>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search</artifactId> 
-			<version>3.4.0.Final</version> <exclusions> <exclusion> <artifactId> hibernate-commons-annotations 
-			</artifactId> <groupId>org.hibernate</groupId> </exclusion> <exclusion> <artifactId>hibernate-core</artifactId> 
-			<groupId>org.hibernate</groupId> </exclusion> <exclusion> <artifactId>slf4j-api</artifactId> 
-			<groupId>org.slf4j</groupId> </exclusion> </exclusions> </dependency> -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.0_spec</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -289,13 +330,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.2</version>
+			<version>1.6.4</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.2</version>
+			<version>1.6.4</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -309,6 +350,33 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.17</version>
 		</dependency>
+
+		<!-- Optional, but highly recommended -->
+		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 
+			JPA from JUnit/TestNG -->
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-spi</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<repositories>
 		<repository>
@@ -322,6 +390,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -406,6 +475,166 @@
 					<groupId>mysql</groupId>
 					<artifactId>mysql-connector-java</artifactId>
 					<version>5.1.17</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>arquillian-jbossas-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-remote</artifactId>
+					<version>7.1.1.Final</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-glassfish-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.weld</groupId>
+					<artifactId>weld-api</artifactId>
+					<version>1.0-SP1</version>
+					<scope>test</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>javax.enterprise</groupId>
+							<artifactId>cdi-api</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-bundle</artifactId>
+					<version>1.6</version>
+					<scope>test</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>javax.ws.rs</groupId>
+							<artifactId>jsr311-api</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.jersey.contribs</groupId>
+					<artifactId>jersey-multipart</artifactId>
+					<version>1.6</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-glassfish-remote-3.1</artifactId>
+					<version>1.0.0.CR2</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-jbossas-managed</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.as</groupId>
+											<artifactId>jboss-as-dist</artifactId>
+											<version>7.1.1.Final</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>target</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-managed</artifactId>
+					<version>7.1.1.Final</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-glassfish-embedded</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+					<version>1.0.0.CR2</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.main.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+					<version>3.1.2</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-weld-ee-embedded</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+					<version>1.0.0.CR3</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.weld</groupId>
+					<artifactId>weld-core</artifactId>
+					<version>1.1.5.Final</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+					<version>1.6.4</version>
+					<scope>test</scope>
 				</dependency>
 			</dependencies>
 		</profile>

@@ -7,11 +7,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://java.sun.com/jsf/composite/components/property"
 	xmlns:s="http://jboss.org/seam/faces"
+	xmlns:a4j="http://richfaces.org/a4j"
 	template="/resources/forge-template.xhtml">
 	<ui:define name="metadata">
 		<f:metadata>
-			<f:viewParam name="id" value="#{postEditAction.postId}"/>
-			<s:viewAction action="#{postEditAction.init()}"/>
+			<f:viewParam name="id" value="#{postEditAction.postId}" />
+			<s:viewAction action="#{postEditAction.init()}" />
 		</f:metadata>
 	</ui:define>/>
 
@@ -31,7 +32,7 @@
 	<ui:define name="main">
 		<h:form id="form">
 
-			<h:messages globalOnly="true" showSummary="true"/>
+			<h:messages globalOnly="true" showSummary="true" />
 
 			<p:input id="title" label="Title" required="true">
 				<h:inputText id="input" value="#{postEditAction.currentPost.title}"
@@ -41,22 +42,33 @@
 				<h:inputTextarea id="input" style="width: 350px" rows="10"
 					value="#{postEditAction.currentPost.content}" required="true" />
 			</p:input>
-			
+
 			<p:input id="tags" label="Tags" required="true">
-				<h:selectManyCheckbox id="input" value="#{postEditAction.currentPost.tags}" collectionType="java.util.ArrayList">
+				<h:selectManyCheckbox id="input"
+					value="#{postEditAction.currentPost.tags}"
+					collectionType="java.util.ArrayList">
 					<f:selectItems value="#{tags}" var="t" itemLabel="#{t.name}">
 					</f:selectItems>
-					<s:objectConverter/>
+					<s:objectConverter />
 				</h:selectManyCheckbox>
 			</p:input>
 			<br />
-			
+
 			<h:commandButton value="Create" action="#{postEditAction.save()}" />
 			<h:commandButton value="Create 2" action="#{postEditAction.save2()}" />
 			<h:commandButton value="Create 3" action="#{postEditAction.save3()}" />
 			<h:commandButton value="Create 4" action="#{postEditAction.save4()}" />
-			<h:commandButton value="Cancel" immediate="true" action="#{postEditAction.cancel()}" />
+			<h:commandButton value="Cancel" immediate="true"
+				action="#{postEditAction.cancel()}" />
+
+
+			<a4j:commandButton execute="@this" render="outputPane"
+				value="Ajax Button" action="#{postEditAction.ajaxButton()}" />
+
 		</h:form>
+		<h:panelGroup id="outpuPane">
+			#{postEditAction.ajaxDateTime}
+		</h:panelGroup>
 	</ui:define>
 
 	<ui:define name="left">

@@ -1,5 +1,7 @@
 package com.hantsylabs.seam3sandbox.view;
 
+import java.util.Date;
+
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -143,6 +145,25 @@ public class PostEditAction {
 		if (!conversation.isTransient()) {
 			conversation.end();
 		}
+	}
+	
+	
+	private Date ajaxDateTime;
+	
+	public Date getAjaxDateTime() {
+		return ajaxDateTime;
+	}
+
+	public void setAjaxDateTime(Date ajaxDateTime) {
+		this.ajaxDateTime = ajaxDateTime;
+	}
+
+	public void ajaxButton() {
+		if (log.isDebugEnabled()) {
+			log.debug("call ajaxButton ");
+		}
+		
+		this.ajaxDateTime=new Date();
 	}
 	
 	public void cancel() {
