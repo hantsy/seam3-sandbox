@@ -316,14 +316,12 @@
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
 			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>${jboss-javaee6-spec.version}</version>
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.servlet</groupId>
 			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
-			<version>1.0.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -406,26 +404,11 @@
 		</plugins>
 	</build>
 	<profiles>
+
 		<profile>
-			<id>jboss7</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			<id>jboss-add-resource</id>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-war-plugin</artifactId>
-						<configuration>
-							<webResources>
-								<resource>
-									<directory>src/main/resources-jbossas7</directory>
-								</resource>
-							</webResources>
-							<!-- <archive> <manifestEntries> <Dependencies>org.dom4j</Dependencies> 
-								</manifestEntries> </archive> -->
-						</configuration>
-					</plugin>
 					<plugin>
 						<groupId>org.jboss.as.plugins</groupId>
 						<artifactId>jboss-as-maven-plugin</artifactId>
@@ -477,6 +460,63 @@
 					<version>5.1.17</version>
 				</dependency>
 			</dependencies>
+		</profile>
+		<profile>
+			<id>jboss7</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>src/main/resources-jbossas7</directory>
+								</resource>
+							</webResources>
+							<!-- <archive> <manifestEntries> <Dependencies>org.dom4j</Dependencies> 
+								</manifestEntries> </archive> -->
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.jboss.as.plugins</groupId>
+						<artifactId>jboss-as-maven-plugin</artifactId>
+						<version>7.0.2.Final</version>
+					</plugin>
+				</plugins>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>5.1.17</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>jboss71</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>src/main/resources-jbossas71</directory>
+								</resource>
+							</webResources>
+							<!-- <archive> <manifestEntries> <Dependencies>org.dom4j</Dependencies> 
+								</manifestEntries> </archive> -->
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.jboss.as.plugins</groupId>
+						<artifactId>jboss-as-maven-plugin</artifactId>
+						<version>7.1.1.Final</version>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 
 		<profile>

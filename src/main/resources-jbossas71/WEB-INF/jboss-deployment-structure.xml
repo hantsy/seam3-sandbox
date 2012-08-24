@@ -1,7 +1,7 @@
 <jboss-deployment-structure>
 	<deployment>
-		<dependencies>
-			<module name="org.jboss.logmanager" />
-		</dependencies>
+		<exclusions>
+			<module name="org.apache.log4j" />
+		</exclusions>
 	</deployment>
 </jboss-deployment-structure>
